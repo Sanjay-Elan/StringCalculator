@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class StringCalculator {
     public static int Add(String numbers) {
         if( !numbers.isEmpty()) {
@@ -14,10 +12,15 @@ public class StringCalculator {
         return Integer.parseInt(numbers);
     }
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String args[]) {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter a valid number string separated by comma(,)");
-        String value = br.readLine();
+        String value = null;
+        try {
+            value = br.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         int result = Add(value);
         System.out.println("Total Sum = "+result);
     }
