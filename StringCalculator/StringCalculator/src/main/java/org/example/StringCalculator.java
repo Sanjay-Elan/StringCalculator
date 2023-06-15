@@ -3,13 +3,17 @@ package org.example;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class StringCalculator {
     public static int Add(String numbers) {
         if( !numbers.isEmpty()) {
-            return 0;
+            List<Integer> nums = Arrays.stream(numbers.split(",")).map(Integer::parseInt).collect(Collectors.toList());
+            return nums.stream().reduce(Integer::sum).orElseThrow();
         }
-        return Integer.parseInt(numbers);
+        return 0;
     }
 
     public static void main(String args[]) {
