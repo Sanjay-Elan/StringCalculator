@@ -30,4 +30,10 @@ class StringCalculatorTest {
         var calc = new StringCalculator();
         Assertions.assertThat(calc.Add("1,2,3")).isEqualTo(6);
     }
+
+    @Test
+    void SumOfNumbersShouldBeReturnForNumbersGivenWithCommaAndNewLine() {
+        var calc = new StringCalculator();
+        Assertions.assertThat(calc.Add("1\n2,3")).isEqualTo(6);
+    }
 }
