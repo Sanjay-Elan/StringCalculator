@@ -12,6 +12,11 @@ import java.util.stream.Collectors;
 public class StringCalculator {
 
     //Definition of Add Method accepting numbers as String
+    /**
+     *
+     * @param numbers
+     * @return Zero (0) if array is empty, else return sum of array of values
+     */
     public static int Add(String numbers) {
         //Checking numbers is not empty
         if( !numbers.isEmpty()) {
@@ -28,6 +33,12 @@ public class StringCalculator {
     }
 
     //Checking the range of the Integer, If range exits the limit it will throw the error
+
+    /**
+     *
+     * @param nums
+     * throw nonInteger runtime exception
+     */
     private static void nonInteger(List<Integer> nums) {
         StringBuilder SB = new StringBuilder();
         nums.stream().filter(num->num>2147483646).forEach(num->SB.append(num).append(" "));
@@ -37,6 +48,12 @@ public class StringCalculator {
     }
 
     //Checking for the negative values in the array, If negative values present in the string array it will throw the error
+    /**
+     *
+     * @param nums List
+     * throws error if negatives present in array
+     */
+
     private static void negatives(List<Integer> nums) {
         StringBuilder SB = new StringBuilder();
         nums.stream().filter(num->num<0).forEach(num->SB.append(num).append(" "));
@@ -46,6 +63,11 @@ public class StringCalculator {
     }
 
     //Refactoring as function of converting StringArrayToIntegerList and returns the numbers as a Array of Integers
+    /**
+     *
+     * @param numbers
+     * @return Array stream of Integers
+     */
     @NotNull
     private static List<Integer> stringArraytoIntegerList(String[] numbers) {
         return Arrays.stream(numbers).map(Integer::parseInt)
@@ -53,6 +75,11 @@ public class StringCalculator {
     }
 
     //Refactoring as function of splitting the delimiters from the String Input and returns only the numbers from the string
+    /**
+     *
+     * @param numbers
+     * @return array of string without delimiters
+     */
     @NotNull
     private static String[] getSplit(String numbers) {
         if(numbers.startsWith("//")) {
@@ -67,6 +94,12 @@ public class StringCalculator {
         }
         return numbers.split("\n|,");
     }
+    /**
+     *
+     * @param args
+     * @throws IOException
+     * prints the sum of array integers
+     */
 
     //Starting of Main function
     public static void main(String args[]) throws IOException  {

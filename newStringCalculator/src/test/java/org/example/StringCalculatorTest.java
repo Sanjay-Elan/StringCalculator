@@ -96,6 +96,7 @@ class StringCalculatorTest {
         Throwable throwable =  assertThrows(Throwable.class, () -> {
             calc.Add("2147483647");
         });
+        assertEquals(NumberFormatException.class,throwable.getClass());
     }
 
 }
