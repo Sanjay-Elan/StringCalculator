@@ -2,7 +2,6 @@ package org.example;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -14,14 +13,14 @@ public class StringCalculator {
     //Definition of Add Method accepting numbers as String
     /**
      *
-     * @param numbers
+     * @param numbers text with the integers to be added, separated by the delimiter
      * @return Zero (0) if array is empty, else return sum of array of values
      */
     public static int Add(String numbers) {
         //Checking numbers is not empty
         if( !numbers.isEmpty()) {
             //Splitting the delimiters and converting string into List of Integers
-            List<Integer> nums = stringArraytoIntegerList(getSplit(numbers));
+            List<Integer> nums = stringArrayToIntegerList(getSplit(numbers));
 
             negatives(nums);
             nonInteger(nums);
@@ -43,7 +42,7 @@ public class StringCalculator {
         StringBuilder SB = new StringBuilder();
         nums.stream().filter(num->num>2147483646).forEach(num->SB.append(num).append(" "));
         if (!SB.toString().isEmpty()) {
-            throw new NumberFormatException("Integer values more than 2147483646 are not allowed");
+            throw new RuntimeException("Integer values more than 2147483646 are not allowed");
         }
     }
 
@@ -62,24 +61,14 @@ public class StringCalculator {
         }
     }
 
-    //Refactoring as function of converting StringArrayToIntegerList and returns the numbers as a Array of Integers
-    /**
-     *
-     * @param numbers
-     * @return Array stream of Integers
-     */
+    //Refactoring as function of converting StringArrayToIntegerList and returns the numbers as an Array of Integers
     @NotNull
-    private static List<Integer> stringArraytoIntegerList(String[] numbers) {
+    private static List<Integer> stringArrayToIntegerList(String[] numbers) {
         return Arrays.stream(numbers).map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
     //Refactoring as function of splitting the delimiters from the String Input and returns only the numbers from the string
-    /**
-     *
-     * @param numbers
-     * @return array of string without delimiters
-     */
     @NotNull
     private static String[] getSplit(String numbers) {
         if(numbers.startsWith("//")) {
@@ -92,23 +81,7 @@ public class StringCalculator {
 
             throw new RuntimeException("Not a Custom Delimiter format");
         }
-        return numbers.split("\n|,");
+        return numbers.split("[\n,]");
     }
-    /**
-     *
-     * @param args
-     * @throws IOException
-     * prints the sum of array integers
-     */
-
-    //Starting of Main function
-    public static void main(String args[]) throws IOException  {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Enter a valid number string separated by comma(,)");
-        String value = br.readLine();
-        int result = Add(value);
-        System.out.println("Total Sum = "+result);
-    }
-
 }
 //End of Class
