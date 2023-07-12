@@ -1,7 +1,5 @@
 package org.example;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -62,14 +60,12 @@ public class StringCalculator {
     }
 
     //Refactoring as function of converting StringArrayToIntegerList and returns the numbers as an Array of Integers
-    @NotNull
     private static List<Integer> stringArrayToIntegerList(String[] numbers) {
         return Arrays.stream(numbers).map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
     //Refactoring as function of splitting the delimiters from the String Input and returns only the numbers from the string
-    @NotNull
     private static String[] getSplit(String numbers) {
         if(numbers.startsWith("//")) {
             Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(numbers);
