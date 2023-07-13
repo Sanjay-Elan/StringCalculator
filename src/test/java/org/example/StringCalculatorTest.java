@@ -75,7 +75,7 @@ class StringCalculatorTest {
     @Test
     void ThrowErrorWhenLongValueIsInput() {
         Throwable throwable =  assertThrows(Throwable.class, () -> StringCalculator.Add("2147483647"));
-        assertEquals(NumberFormatException.class,throwable.getClass());
+        assertEquals(RuntimeException.class,throwable.getClass());
     }
 
 }
